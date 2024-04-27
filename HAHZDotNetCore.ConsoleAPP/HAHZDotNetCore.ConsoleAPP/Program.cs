@@ -1,5 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using HAHZDotNetCore.ConsoleApp;
+
 using HAHZDotNetCore.ConsoleAPP.EFCoreExamples;
 
 Console.WriteLine("Hello, World!");

@@ -7,11 +7,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Reflection.Metadata;
 
-namespace HAHZDotNetCore.ConsoleApp
+namespace HAHZDotNetCore.ConsoleAPP.AdoDotNetExamples
 {
     internal class AdoDotNetCRUD
     {
-        private SqlConnectionStringBuilder _connectionStringBuilder=new SqlConnectionStringBuilder()
+        private SqlConnectionStringBuilder _connectionStringBuilder = new SqlConnectionStringBuilder()
         {
             DataSource = ".",
             InitialCatalog = "DotNetTrainingBth4",
@@ -20,8 +20,8 @@ namespace HAHZDotNetCore.ConsoleApp
         };
         public void Read()
         {
-            
-           
+
+
             SqlConnection connection = new SqlConnection(_connectionStringBuilder.ConnectionString);
             connection.Open();
             Console.WriteLine("connection is run.");
@@ -59,12 +59,12 @@ namespace HAHZDotNetCore.ConsoleApp
                 Console.WriteLine("No data found");
                 return;
             }
-            DataRow dr= dt.Rows[0];
-                Console.WriteLine("blogId =>" + dr["BlogId"]);
-                Console.WriteLine("blogTitle =>" + dr["BlogTitle"]);
-                Console.WriteLine("blogAuthor =>" + dr["BlogAuthor"]);
-                Console.WriteLine("blogContent =>" + dr["BlogContent"]);
-                Console.WriteLine("------------------------");
+            DataRow dr = dt.Rows[0];
+            Console.WriteLine("blogId =>" + dr["BlogId"]);
+            Console.WriteLine("blogTitle =>" + dr["BlogTitle"]);
+            Console.WriteLine("blogAuthor =>" + dr["BlogAuthor"]);
+            Console.WriteLine("blogContent =>" + dr["BlogContent"]);
+            Console.WriteLine("------------------------");
         }
         public void Create(string title, string author, string content)
         {
@@ -78,16 +78,16 @@ namespace HAHZDotNetCore.ConsoleApp
            (@BlogTitle
            ,@BlogAuthor
            ,@BlogContent)";
-            SqlCommand cmd=new SqlCommand(query, connection);
+            SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@BLogTitle", title);
             cmd.Parameters.AddWithValue("@BLogAuthor", author);
             cmd.Parameters.AddWithValue("@BLogContent", content);
-            int result=cmd.ExecuteNonQuery();
+            int result = cmd.ExecuteNonQuery();
             connection.Close();
             string message = result > 0 ? "Saving Successful." : "Saving failed.";
             Console.WriteLine(message);
         }
-        public void Update(int id, string title, string author, string content) 
+        public void Update(int id, string title, string author, string content)
         {
             SqlConnection connection = new SqlConnection(_connectionStringBuilder.ConnectionString);
             connection.Open();
@@ -97,14 +97,14 @@ namespace HAHZDotNetCore.ConsoleApp
       ,[BlogContent] = @BlogContent
  WHERE BlogId=@BlogId";
             SqlCommand cmd = new SqlCommand(query, connection);
-            cmd.Parameters.AddWithValue("@BLogId", id);     
+            cmd.Parameters.AddWithValue("@BLogId", id);
             cmd.Parameters.AddWithValue("@BLogTitle", title);
             cmd.Parameters.AddWithValue("@BLogAuthor", author);
             cmd.Parameters.AddWithValue("@BLogContent", content);
             int result = cmd.ExecuteNonQuery();
             connection.Close();
             string message = result > 0 ? "Updating Successful." : "Updating failed.";
-            Console.WriteLine(message); 
+            Console.WriteLine(message);
         }
         public void Delete(int id)
         {

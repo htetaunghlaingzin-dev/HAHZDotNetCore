@@ -16,5 +16,7 @@ namespace HAHZDotNetCore.RestApi.Services
             Password = "ZwehtetZ@18",
             TrustServerCertificate = true
         };
+
+        public static object SqlConnectionStringBuilder { get; internal set; }
     }
 }
